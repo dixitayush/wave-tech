@@ -53,67 +53,63 @@ function drawParticles() {
 createParticles();
 drawParticles();
 
+// Stats Charts
+new Chart(document.getElementById('projectsChart'), {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      data: [120, 30],
+      backgroundColor: ['#c50263', '#22223b'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    cutout: '70%',
+    plugins: { legend: { display: false }, tooltip: { enabled: false } }
+  }
+});
 
+new Chart(document.getElementById('clientsChart'), {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      data: [100, 0],
+      backgroundColor: ['#00e6d8', '#22223b'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    cutout: '70%',
+    plugins: { legend: { display: false }, tooltip: { enabled: false } }
+  }
+});
 
-  new Chart(document.getElementById('projectsChart'), {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: [120, 30],
-        backgroundColor: ['#c50263', '#22223b'],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      cutout: '70%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
+new Chart(document.getElementById('growthChart'), {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      data: [300, 100],
+      backgroundColor: ['#e43f92', '#22223b'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    cutout: '70%',
+    plugins: { legend: { display: false }, tooltip: { enabled: false } }
+  }
+});
 
-  // Clients Chart
-  new Chart(document.getElementById('clientsChart'), {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: [100, 00],
-        backgroundColor: ['#00e6d8', '#22223b'],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      cutout: '70%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
-
-  // Growth Chart
-  new Chart(document.getElementById('growthChart'), {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: [300, 100],
-        backgroundColor: ['#e43f92', '#22223b'],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      cutout: '70%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
-
-  // Support Chart
-  new Chart(document.getElementById('supportChart'), {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: [24, 0],
-        backgroundColor: ['#068596', '#22223b'],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      cutout: '70%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
+new Chart(document.getElementById('supportChart'), {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      data: [24, 0],
+      backgroundColor: ['#068596', '#22223b'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    cutout: '70%',
+    plugins: { legend: { display: false }, tooltip: { enabled: false } }
+  }
+});

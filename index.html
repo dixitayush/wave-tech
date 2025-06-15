@@ -21,11 +21,15 @@
       <p>Web Development, Software, Marketing, Design & More</p>
       <a href="#contact" class="cta-button">Get in Touch</a>
     </section>
+    <div class="scroll-down">
+      <span>▼</span>
+    </div>
   </header>
 
   <main>
-     <section id="services">
+    <section id="services">
       <h2>Our Services</h2>
+      <div class="section-divider"></div>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon"><span>🌐</span></div>
@@ -102,69 +106,66 @@
       </div>
     </section>
 
-    <!-- Add this after the closing </section> of #services, before #about -->
-<section id="stats" class="stats-section">
-  <h2>Our Impact in Numbers</h2>
-  <div class="stats-charts">
-    <div class="stat-card">
-      <canvas id="projectsChart" width="120" height="120"></canvas>
-      <p><strong>10+</strong><br>Projects Delivered</p>
-    </div>
-    <div class="stat-card">
-      <canvas id="clientsChart" width="120" height="120"></canvas>
-      <p><strong>100%</strong><br>Satisfied Clients</p>
-    </div>
-    <div class="stat-card">
-      <canvas id="growthChart" width="120" height="120"></canvas>
-      <p><strong>300%</strong><br>Avg. Client Growth</p>
-    </div>
-    <div class="stat-card">
-      <canvas id="supportChart" width="120" height="120"></canvas>
-      <p><strong>24/7</strong><br>Support</p>
-    </div>
-  </div>
-</section>
+    <section id="stats" class="stats-section">
+      <h2>Numbers</h2>
+      <div class="section-divider"></div>
+      <div class="stats-charts">
+        <div class="stat-card">
+          <canvas id="projectsChart" width="120" height="120"></canvas>
+          <p><strong>10+</strong><br>Projects Delivered</p>
+        </div>
+        <div class="stat-card">
+          <canvas id="clientsChart" width="120" height="120"></canvas>
+          <p><strong>100%</strong><br>Satisfied Clients</p>
+        </div>
+        <div class="stat-card">
+          <canvas id="growthChart" width="120" height="120"></canvas>
+          <p><strong>300%</strong><br>Avg. Client Growth</p>
+        </div>
+        <div class="stat-card">
+          <canvas id="supportChart" width="120" height="120"></canvas>
+          <p><strong>24/7</strong><br>Support</p>
+        </div>
+      </div>
+    </section>
 
     <section id="about">
-  <h2>About WaveTech</h2>
-  <div class="about-content">
-    <p><strong>WaveTech</strong> is a next-generation digital solutions provider origin from a very small town in uttar pradesh, soon launching in India, dedicated to delivering high-quality and cost-effective services across the globe. We specialize in Web Development, Software Solutions, Digital Marketing, Graphic Design, and more—crafted to help small businesses, startups, and individuals thrive in the digital space.</p>
+      <h2>About WaveTech</h2>
+      <div class="section-divider"></div>
+      <div class="about-content">
+        <p><strong>WaveTech</strong> is a next-generation digital solutions provider origin from a very small town in uttar pradesh, soon launching in India, dedicated to delivering high-quality and cost-effective services across the globe. We specialize in Web Development, Software Solutions, Digital Marketing, Graphic Design, and more—crafted to help small businesses, startups, and individuals thrive in the digital space.</p>
+        <p>Founded by a passionate, tech enthusiasts and creative mind, WaveTech borns out of a mission to make professional-grade digital services accessible to everyone, regardless of budget or size.</p>
+        <p>We believe in transparency, innovation, and customer satisfaction. That’s why we offer <strong>custom-tailored solutions</strong>, flexible pricing, and continuous support—so your brand can evolve without limits.</p>
+        <ul>
+          <li><strong>Our Mission:</strong> To empower businesses with cutting-edge digital tools at affordable rates.</li>
+          <li><strong>Our Vision:</strong> A world where quality digital services are within reach for all.</li>
+          <li><strong>Core Values:</strong> Integrity, Affordability, Creativity, Customer-Centricity.</li>
+        </ul>
+        <p>With WaveTech, you don’t just get a service—you get a reliable partner committed to your growth.</p>
+      </div>
+    </section>
 
-    <p>Founded by a  passionate , tech enthusiasts and creative mind, WaveTech borns out of a mission to make professional-grade digital services accessible to everyone, regardless of budget or size.</p>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <div class="section-divider"></div>
+   
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
 
-    <p>We believe in transparency, innovation, and customer satisfaction. That’s why we offer <strong>custom-tailored solutions</strong>, flexible pricing, and continuous support—so your brand can evolve without limits.</p>
-
-    <ul>
-      <li><strong>Our Mission:</strong> To empower businesses with cutting-edge digital tools at affordable rates.</li>
-      <li><strong>Our Vision:</strong> A world where quality digital services are within reach for all.</li>
-      <li><strong>Core Values:</strong> Integrity, Affordability, Creativity, Customer-Centricity.</li>
-    </ul>
-
-    <p>With WaveTech, you don’t just get a service—you get a reliable partner committed to your growth.</p>
-  </div>
-</section>
-
-
-   <section id="contact">
-  <h2>Contact Us</h2>
-  <form>
-    <input type="text" placeholder="Your Name" required />
-    <input type="email" placeholder="Your Email" required />
-    <textarea placeholder="Your Message" required></textarea>
-    <button type="submit">Send</button>
-  </form>
-  <div class="contact-email">
-    <p>Or email us directly at:  
-      <a href="mailto:wavetechofficial00@gmail.com"> wavetechofficial00@gmail.com</a>
-    </p>
-  </div>
-</section>
+         <div class="contact-email">
+        <p>Or email us directly at:  
+          <a href="mailto:wavetechofficial00@gmail.com">wavetechofficial00@gmail.com</a>
+        </p>
+      </div>
+    </section>
   </main>
-
   <footer>
-    <p>&copy; 2025 WaveTech. All rights reserved.</p>
+    &copy; 2025 WaveTech. All rights reserved.
   </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./scripts.js"></script>
 </body>
