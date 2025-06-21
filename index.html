@@ -1,172 +1,1003 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WaveTech - Digital Solutions</title>
-  <link rel="stylesheet" href="./styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveTech - Web Development Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#e43f92', // Pink
+                            dark: '#f16da8'
+                        },
+                        secondary: {
+                            light: '#0f0c29', // Deep purple/blue
+                            dark: '#0f0c29'
+                        },
+                        background: {
+                            light: '#F9FAFB',
+                            dark: '#0f0c29'
+                        },
+                        text: {
+                            light: '#1F2937',
+                            dark: '#e43f92'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .wave-animation {
+            animation: wave 8s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .service-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .theme-toggle {
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle .sun {
+            transform-origin: center;
+            transition: transform 0.5s, opacity 0.3s;
+        }
+
+        .theme-toggle .moon {
+            transform-origin: center;
+            transition: transform 0.5s, opacity 0.3s;
+        }
+
+        html.dark .theme-toggle .sun {
+            opacity: 0;
+            transform: rotate(100deg);
+        }
+
+        html.light .theme-toggle .moon {
+            opacity: 0;
+            transform: rotate(-100deg);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f0c29, #4d2362, #e43f92);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e43f92, #4d2362);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @media (max-width: 640px) {
+            footer .flex {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 1rem !important;
+            }
+
+            footer .text-center {
+                text-align: center !important;
+            }
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <img src="Wave-tech-logo.png" alt="WaveTech Logo" class="logo" />
-      <ul class="nav-links">
-        <li><a class="anchor-link" href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <section class="hero">
-      <h1>Modern & Affordable Digital Solutions</h1>
-      <p>Web Development, Software, Marketing, Design & More</p>
-      <a href="#contact" class="cta-button">Get in Touch</a>
+
+<body class="bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-secondary-dark shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center max-h-16">
+            <div class="flex items-center space-x-2">
+                <!-- Logo SVG -->
+                <img src="./Wave-tech-logo.png" alt="WaveTech Logo"
+                    class="h-10 w-auto md:h-12 lg:h-20 max-w-[120px] md:max-w-[160px] object-contain" />
+            </div>
+
+            <div class="flex items-center space-x-8">
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#"
+                        class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Home</a>
+                    <a href="#services"
+                        class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Services</a>
+                    <a href="#portfolio"
+                        class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Portfolio</a>
+                    <a href="#about"
+                        class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">About</a>
+                    <a href="#contact"
+                        class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Contact</a>
+                </nav>
+
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle"
+                    class="relative w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition focus:outline-none flex items-center theme-toggle"
+                    aria-label="Toggle dark mode">
+                    <span
+                        class="absolute left-1 top-1 w-4 h-4 rounded-full bg-white dark:bg-primary-dark shadow transition-transform duration-300 transform dark:translate-x-6"></span>
+                    <!-- Sun Icon -->
+                    <svg class="sun absolute left-2 top-1.5 h-3 w-3 text-yellow-400 transition-opacity duration-300 pointer-events-none"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <circle cx="10" cy="10" r="5" />
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg class="moon absolute right-2 top-1.5 h-3 w-3 text-gray-600 dark:text-yellow-300 transition-opacity duration-300 pointer-events-none"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                    </svg>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden focus:outline-none">
+                    <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-secondary-dark shadow-lg">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#"
+                    class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Home</a>
+                <a href="#services"
+                    class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Services</a>
+                <a href="#portfolio"
+                    class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Portfolio</a>
+                <a href="#about"
+                    class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">About</a>
+                <a href="#contact"
+                    class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-10">
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        <span class="block">Innovative</span>
+                        <span
+                            class="bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark inline-block bg-clip-text">Web
+                            Solutions</span>
+                        <span class="block">For Your Business</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 mr-2 text-gray-600 dark:text-gray-300">
+                        We create stunning, high-performance websites and web applications that help your business grow
+                        and succeed in the digital world.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full">
+                        <a href="#contact"
+                            class="btn w-full sm:w-auto px-8 py-3 bg-primary-light hover:bg-pink-600 dark:bg-primary-dark dark:hover:bg-pink-500 text-white font-medium rounded-lg transition duration-300 text-center">
+                            Get Started
+                        </a>
+                        <a href="./brochure.pdf" target="_blank" rel="noopener"
+                            class="btn w-full sm:w-auto px-8 py-3 bg-primary-light hover:bg-pink-600 dark:bg-primary-dark dark:hover:bg-pink-500 text-white font-medium rounded-lg transition duration-300 text-center">
+                            Our Services
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="relative bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl">
+                            <div class="flex items-center space-x-2 mb-4">
+                                <div class="h-3 w-3 rounded-full bg-red-500"></div>
+                                <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
+                                <div class="h-3 w-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="space-y-3">
+                                <video src="./wave-tech-logo-video.mp4" autoplay loop muted playsinline
+                                    class="rounded-xl shadow-lg"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <div class="scroll-down">
-      <span>▼</span>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    We offer a comprehensive range of web development services to help your business thrive online.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white dark:bg-secondary-dark/40 rounded-xl shadow-lg p-8">
+                    <div
+                        class="h-14 w-14 bg-primary-light/20 dark:bg-primary-dark/20 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="h-8 w-8 text-primary-light dark:text-primary-dark"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Website Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Custom-designed, responsive websites that look great on all devices and help you achieve your
+                        business goals.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Responsive Design</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>SEO Optimization</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Fast Loading Speed</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="inline-block text-primary-light dark:text-primary-dark font-medium hover:underline">Learn
+                        More →</a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white dark:bg-secondary-dark/40 rounded-xl shadow-lg p-8">
+                    <div
+                        class="h-14 w-14 bg-primary-light/20 dark:bg-primary-dark/20 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="h-8 w-8 text-primary-light dark:text-primary-dark"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mobile App Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Native and cross-platform mobile applications that provide seamless user experiences across all
+                        devices.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>iOS & Android</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>React Native</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Flutter Development</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="inline-block text-primary-light dark:text-primary-dark font-medium hover:underline">Learn
+                        More →</a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white dark:bg-secondary-dark/40 rounded-xl shadow-lg p-8">
+                    <div
+                        class="h-14 w-14 bg-primary-light/20 dark:bg-primary-dark/20 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="h-8 w-8 text-primary-light dark:text-primary-dark"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">E-commerce Solutions</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Powerful online stores that drive sales and provide exceptional shopping experiences for your
+                        customers.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Shopify Development</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>WooCommerce</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Custom Cart Solutions</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="inline-block text-primary-light dark:text-primary-dark font-medium hover:underline">Learn
+                        More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Portfolio</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Take a look at some of our recent projects and see how we've helped businesses achieve their goals.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="group rounded-xl overflow-hidden shadow-lg">
+                    <div
+                        class="relative h-64 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="h-20 w-20 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                            </svg>
+                        </div>
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <a href="https://wavetechofficial.com/"
+                                class="px-4 py-2 bg-white text-gray-900 rounded-lg font-medium">View Project</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-secondary-dark/40">
+                        <h3 class="text-xl font-bold mb-2">Wavetech Website</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3">
+                            A modern, responsive website designed to showcase our services and portfolio.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark text-sm rounded-full">HTML</span>
+                            <span
+                                class="px-3 py-1 bg-secondary-light/10 dark:bg-secondary-dark/10 text-secondary-light dark:text-secondary-dark text-sm rounded-full">Javascript</span>
+                            <span
+                                class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 text-sm rounded-full">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="group rounded-xl overflow-hidden shadow-lg">
+                    <div
+                        class="relative h-64 bg-gradient-to-r from-secondary-light to-primary-light dark:from-secondary-dark dark:to-primary-dark flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="h-20 w-20 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                        </div>
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <a href="#" class="px-4 py-2 bg-white text-gray-900 rounded-lg font-medium">Launching
+                                Soon</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-secondary-dark/40">
+                        <h3 class="text-xl font-bold mb-2">Technotrends</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3">
+                            A portfolium website showcasing the latest tech trends and innovations.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark text-sm rounded-full">HTML</span>
+                            <span
+                                class="px-3 py-1 bg-secondary-light/10 dark:bg-secondary-dark/10 text-secondary-light dark:text-secondary-dark text-sm rounded-full">CSS</span>
+                            <span
+                                class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 text-sm rounded-full">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="group rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative h-64 gradient-bg flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="h-20 w-20 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                            </svg>
+                        </div>
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <a href="#" class="px-4 py-2 bg-white text-gray-900 rounded-lg font-medium">View Project</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-secondary-dark/40">
+                        <h3 class="text-xl font-bold mb-2">E-commerce web app</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3">
+                            A fully functional e-commerce web application built with Reactjs and Springboot.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark text-sm rounded-full">React
+                                Native</span>
+                            <span
+                                class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 text-sm rounded-full">Springboot</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm rounded-full">Postgres</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative h-64 gradient-bg flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="h-20 w-20 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                            </svg>
+                        </div>
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <a href="#" class="px-4 py-2 bg-white text-gray-900 rounded-lg font-medium">View Project</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-secondary-dark/40">
+                        <h3 class="text-xl font-bold mb-2">School Management </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3">
+                            A comprehensive school management system that streamlines administrative tasks and enhances
+                            communication.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark text-sm rounded-full">Nextjs</span>
+                            <span
+                                class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 text-sm rounded-full">Tailwind</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm rounded-full">Postgres</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact"
+                    class="inline-block px-6 py-3 border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark dark:hover:text-white font-medium rounded-lg transition duration-300">
+                    Contact Us for More Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-primary-light/30 to-secondary-light/30 dark:from-primary-dark/30 dark:to-secondary-dark/30 rounded-2xl transform -rotate-6">
+                        </div>
+                        <div class="relative bg-white dark:bg-secondary-dark/40 p-8 rounded-2xl shadow-xl">
+                            <div class="flex justify-center mb-6">
+
+                            </div>
+                            <img src="./Wave-tech-logo.png" alt="">
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About WaveTech</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                        WaveTech is an emerging startup in the web development space, focused on crafting modern and
+                        impactful digital solutions for growing businesses. With a passionate team of developers,
+                        designers, and strategists, we're building a reputation for delivering quality and creativity.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                        Our mission is to merge innovative technology with user-centric design to develop websites and
+                        applications that are not only visually appealing but also strategically effective. As a young
+                        company, we thrive on collaboration and are committed to helping our clients bring their ideas
+                        to life.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <svg class="h-6 w-6 text-primary-light dark:text-primary-dark mr-2"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                                <h4 class="text-xl font-bold">Reliable</h4>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 pl-8">
+                                We deliver projects on time and within budget.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <svg class="h-6 w-6 text-primary-light dark:text-primary-dark mr-2"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                <h4 class="text-xl font-bold">Innovative</h4>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 pl-8">
+                                We stay ahead with the latest technologies.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <svg class="h-6 w-6 text-primary-light dark:text-primary-dark mr-2"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.356-1.283.988-2.386l.548-.547a5.002 5.002 0 019.288 0l.548.547C16.644 16.717 17 17.336 17 18v2z" />
+                                </svg>
+                                <h4 class="text-xl font-bold">Collaborative</h4>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 pl-8">
+                                We work closely with our clients as partners.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <svg class="h-6 w-6 text-primary-light dark:text-primary-dark mr-2"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                                <h4 class="text-xl font-bold">Creative</h4>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 pl-8">
+                                We bring fresh ideas and unique solutions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Don't just take our word for it. Here's what our clients have to say about working with WaveTech.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white dark:bg-secondary-dark/40 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="h-12 w-12 rounded-full bg-primary-light/20 dark:bg-primary-dark/20 flex items-center justify-center text-xl font-bold text-primary-light dark:text-primary-dark">
+                            JD
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Ajay </h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Technotrends offical</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        "WaveTech transformed our online presence completely. Their team was professional, responsive,
+                        and delivered a website that exceeded our expectations. Our conversion rates have increased by
+                        40% since the launch."
+                    </p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white dark:bg-secondary-dark/40 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="h-12 w-12 rounded-full bg-primary-light/20 dark:bg-primary-dark/20 flex items-center justify-center text-xl font-bold text-primary-light dark:text-primary-dark">
+                            SJ
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Shyam</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Founder - Digital Creations</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        "Working with WaveTech on our e-commerce platform has been a great experience so far. The team
+                        is responsive, creative, and truly understands our vision. Even during the development phase,
+                        their professionalism and attention to detail give us full confidence in the final product."
+                    </p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white dark:bg-secondary-dark/40 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="h-12 w-12 rounded-full bg-primary-light/20 dark:bg-primary-dark/20 flex items-center justify-center text-xl font-bold text-primary-light dark:text-primary-dark">
+                            MR
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Career Junctions</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Manager</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        "WaveTech is currently developing our website, and the process has been seamless so far. Their
+                        team listens carefully, provides creative input, and keeps us updated at every stage. We're
+                        really happy with the progress and can't wait to see the final version live!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Ready to start your project? Contact us today for a free consultation and quote.
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Contact Information -->
+                <div class="w-full md:w-1/2">
+                    <div
+                        class="bg-white dark:bg-secondary-dark/40 p-8 rounded-xl shadow-lg h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                            <div class="space-y-6">
+                                <!-- Phone -->
+                                <div class="flex items-start">
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-primary-light/20 dark:bg-primary-dark/20 flex items-center justify-center flex-shrink-0">
+                                        <svg class="h-5 w-5 text-primary-light dark:text-primary-dark"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-medium mb-1">Phone</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">+91 9219568739</p>
+                                    </div>
+                                </div>
+                                <!-- Email -->
+                                <div class="flex items-start">
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-primary-light/20 dark:bg-primary-dark/20 flex items-center justify-center flex-shrink-0">
+                                        <svg class="h-5 w-5 text-primary-light dark:text-primary-dark"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-medium mb-1">Email</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">wavetechofficial00@gmail.com</p>
+                                    </div>
+                                </div>
+                                <!-- Address -->
+                                <div class="flex items-start">
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-primary-light/20 dark:bg-primary-dark/20 flex items-center justify-center flex-shrink-0">
+                                        <svg class="h-5 w-5 text-primary-light dark:text-primary-dark"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-medium mb-1">Address</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Uttar Pradesh, India</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <!-- Instagram -->
+                                <a href="https://instagram.com/wave.techofficial/" target="_blank" rel="noopener"
+                                    class="h-10 w-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center text-white hover:scale-110 transition">
+                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <rect width="18" height="18" x="3" y="3" rx="5" stroke="currentColor"
+                                            stroke-width="2" />
+                                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                                        <circle cx="17" cy="7" r="1.5" fill="currentColor" />
+                                    </svg>
+                                </a>
+                                <!-- Threads -->
+                                <a href="https://www.threads.net/@wave.techofficial/" target="_blank" rel="noopener"
+                                    class="h-10 w-10 rounded-full bg-black flex items-center justify-center text-white hover:bg-gray-800 transition">
+                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 50 50">
+                                        <path fill="currentColor"
+                                            d="M25 2C12.3 2 2 12.3 2 25s10.3 23 23 23 23-10.3 23-23S37.7 2 25 2zm0 42c-10.5 0-19-8.5-19-19S14.5 6 25 6s19 8.5 19 19-8.5 19-19 19zm0-31c-6.6 0-12 5.4-12 12 0 6.6 5.4 12 12 12s12-5.4 12-12c0-6.6-5.4-12-12-12zm0 21c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9zm0-16c-3.9 0-7 3.1-7 7s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Form -->
+                <div class="w-full md:w-1/2">
+                    <form action="https://formspree.io/f/mnnvblnk" method="POST"
+                        class="bg-white dark:bg-secondary-dark/40 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6">Contact Form</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <input type="text" name="name" placeholder="Your Name" required
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark">
+                            <input type="email" name="email" placeholder="Your Email" required
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark">
+                            <input type="tel" name="phone" placeholder="Your Phone" required
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark">
+                        </div>
+                        <textarea name="message" rows="4" placeholder="Your Message" required
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark mb-6"></textarea>
+                        <button type="submit"
+                            class="w-full px-6 py-3 bg-primary-light hover:bg-pink-600 dark:bg-primary-dark dark:hover:bg-pink-500 text-white font-medium rounded-lg transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Modal (responsive with Tailwind classes) -->
+    <div id="serviceModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div
+            class="bg-white dark:bg-secondary-dark rounded-xl shadow-xl w-full max-w-lg mx-4 sm:mx-8 p-4 sm:p-8 relative">
+            <button id="closeServiceModal"
+                class="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-400 hover:text-primary-light dark:hover:text-primary-dark text-2xl font-bold focus:outline-none">&times;</button>
+            <h3 class="text-xl sm:text-2xl font-bold mb-4 text-primary-light dark:text-primary-dark">Service Details
+            </h3>
+            <div id="serviceModalContent" class="text-gray-700 dark:text-gray-200">
+                <p>
+                    Get in touch with us to learn more about this service, pricing, and how we can help your business
+                    grow. Our team will respond promptly to your inquiry!
+                </p>
+                <ul class="mb-4 mt-4 space-y-2">
+                    <li class="flex items-center">
+                        <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2" fill="none"
+                            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Fast response from our experts
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2" fill="none"
+                            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Free consultation and project analysis
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="h-5 w-5 text-primary-light dark:text-primary-dark mr-2" fill="none"
+                            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Transparent pricing and process
+                    </li>
+                </ul>
+                <a href="#contact"
+                    class="inline-block mt-4 px-6 py-3 bg-primary-light hover:bg-pink-600 dark:bg-primary-dark dark:hover:bg-pink-500 text-white font-medium rounded-lg transition duration-300 text-center w-full">
+                    Contact Us Now
+                </a>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main>
-    <section id="services">
-      <h2>Our Services</h2>
-      <div class="section-divider"></div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon"><span>🌐</span></div>
-          <h3>Web Development</h3>
-          <p>Custom, responsive websites that drive results.</p>
-          <div class="service-meta">
-            <span class="price">From ₹4,999</span>
-            <span class="badge">20% Off</span>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><span>💻</span></div>
-          <h3>Software Development</h3>
-          <p>Tailored software solutions for your business needs.</p>
-          <div class="service-meta">
-            <span class="price">From ₹9,999</span>
-            <span class="badge">₹2,000 Off</span>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><span>📈</span></div>
-          <h3>Digital Marketing</h3>
-          <p>Grow your brand with SEO, ads, and social media.</p>
-          <div class="service-meta">
-            <span class="price">From ₹2,999/mo</span>
-            <span class="badge">Free SEO</span>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><span>🎨</span></div>
-          <h3>Graphic Designing</h3>
-          <p>Branding, logos, and creative visuals that stand out.</p>
-          <div class="service-meta">
-            <span class="price">From ₹1,499</span>
-            <span class="badge">15% Off</span>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><span>📱</span></div>
-          <h3>App Development</h3>
-          <p>Android/iOS apps to grow your business on mobile.</p>
-          <div class="service-meta">
-            <span class="price">From ₹14,999</span>
-            <span class="badge">₹3,000 Launch Off</span>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><span>✍️</span></div>
-          <h3>Content Creation</h3>
-          <p>Engaging posts, blogs, and copy for your audience.</p>
-          <div class="service-meta">
-            <span class="price">₹499 per post</span>
-            <span class="badge">30 for ₹12,999</span>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><span>🌐</span></div>
-          <h3>Domain & Hosting</h3>
-          <p>Fast, secure, and reliable hosting with free setup.</p>
-          <div class="service-meta">
-            <span class="price">From ₹999/year</span>
-            <span class="badge">Free Setup</span>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon"><span>🛠️</span></div>
-          <h3>Maintenance & Support</h3>
-          <p>Keep your site running smoothly, always up-to-date.</p>
-          <div class="service-meta">
-            <span class="price">From ₹499/month</span>
-            <span class="badge">1st Month Free</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Scripts -->
 
-    <section id="stats" class="stats-section">
-      <h2>Numbers</h2>
-      <div class="section-divider"></div>
-      <div class="stats-charts">
-        <div class="stat-card">
-          <canvas id="projectsChart" width="120" height="120"></canvas>
-          <p><strong>10+</strong><br>Projects Delivered</p>
-        </div>
-        <div class="stat-card">
-          <canvas id="clientsChart" width="120" height="120"></canvas>
-          <p><strong>100%</strong><br>Satisfied Clients</p>
-        </div>
-        <div class="stat-card">
-          <canvas id="growthChart" width="120" height="120"></canvas>
-          <p><strong>300%</strong><br>Avg. Client Growth</p>
-        </div>
-        <div class="stat-card">
-          <canvas id="supportChart" width="120" height="120"></canvas>
-          <p><strong>24/7</strong><br>Support</p>
-        </div>
-      </div>
-    </section>
+    <script>
+        // Theme toggle script
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
 
-    <section id="about">
-      <h2>About WaveTech</h2>
-      <div class="section-divider"></div>
-      <div class="about-content">
-        <p><strong>WaveTech</strong> is a next-generation digital solutions provider origin from a very small town in uttar pradesh, soon launching in India, dedicated to delivering high-quality and cost-effective services across the globe. We specialize in Web Development, Software Solutions, Digital Marketing, Graphic Design, and more—crafted to help small businesses, startups, and individuals thrive in the digital space.</p>
-        <p>Founded by a passionate, tech enthusiasts and creative mind, WaveTech borns out of a mission to make professional-grade digital services accessible to everyone, regardless of budget or size.</p>
-        <p>We believe in transparency, innovation, and customer satisfaction. That’s why we offer <strong>custom-tailored solutions</strong>, flexible pricing, and continuous support—so your brand can evolve without limits.</p>
-        <ul>
-          <li><strong>Our Mission:</strong> To empower businesses with cutting-edge digital tools at affordable rates.</li>
-          <li><strong>Our Vision:</strong> A world where quality digital services are within reach for all.</li>
-          <li><strong>Core Values:</strong> Integrity, Affordability, Creativity, Customer-Centricity.</li>
-        </ul>
-        <p>With WaveTech, you don’t just get a service—you get a reliable partner committed to your growth.</p>
-      </div>
-    </section>
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <div class="section-divider"></div>
-   
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send</button>
-      </form>
+        // Check for saved theme in localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            htmlElement.classList.add(savedTheme);
+        }
 
-         <div class="contact-email">
-        <p>Or email us directly at:  
-          <a href="mailto:wavetechofficial00@gmail.com">wavetechofficial00@gmail.com</a>
-        </p>
-      </div>
-    </section>
-  </main>
-  <footer>
-    &copy; 2025 WaveTech. All rights reserved.
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="./scripts.js"></script>
+        // Mobile menu script
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Open modal on any Learn More button
+        document.querySelectorAll('a.inline-block.text-primary-light, a.inline-block.dark\\:text-primary-dark').forEach(link => {
+            if (link.textContent.trim().toLowerCase().startsWith('learn')) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.getElementById('serviceModal').classList.remove('hidden');
+                });
+            }
+        });
+        // Close modal
+        document.getElementById('closeServiceModal').onclick = function () {
+            document.getElementById('serviceModal').classList.add('hidden');
+        };
+        // Close modal on outside click
+        document.getElementById('serviceModal').addEventListener('click', function (e) {
+            if (e.target === this) this.classList.add('hidden');
+        });
+    </script>
 </body>
+
 </html>
